@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+      <div class="job-post-sec">
+        <form [formGroup]="jobPostForm" (ngSubmit)="onSubmit()">
+          <h4>Post Your Job here...</h4>
+          <div class="row field-sec">
+
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              <label for="jobTitle">Job Title:</label>
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-8">
+              <input type="text" class="form-control" placeholder="Enter job title" formControlName="title">
+            </div>
+          </div>
+
+          <div class="row field-sec">
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              <label for="jobTitle">Description:</label>
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-8">
+              <textarea type="text" class="form-control" placeholder="Enter job description" formControlName="description"></textarea>
+            </div>
+          </div>
+
+          <div class="row field-sec">
+
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              <label for="jobTitle">Job Responsblities:</label>
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-8">
+              <textarea type="text" class="form-control" placeholder="Enter job Responsblities" formControlName="responsblities"></textarea>
+            </div>
+          </div>
+
+          <div class="row field-sec">
+
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              <label for="jobTitle">Commpany</label>
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-8">
+              <textarea type="text" class="form-control" placeholder="Enter company name" formControlName="companyName"></textarea>
+            </div>
+          </div>
+
+          <div class="row field-sec">
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              <label for="jobTitle">Job Type:</label>
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-8">
+              <select class="form-control" placeholder="Enter job type" formControlName="jobType">
+                <option [ngValue]="null" disabled>Select One</option>
+                <option value="Part-Time">Part-Time</option>
+                <option value="Full-Time">Full-Time</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row field-sec">
+
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              <label for="jobTitle">Salary(Min.)</label>
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-8">
+              <input type="number" class="form-control" placeholder="Min Salary" formControlName="minSalary">
+            </div>
+          </div>
+
+          <div class="row field-sec">
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              <label for="jobTitle">Salary(Max.)</label>
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-8">
+              <input class="form-control" type="number" placeholder="Max salary" formControlName="maxSalary">
+            </div>
+          </div>
+
+
+          <div class="row field-sec">
+            <div class="col-md-4 col-lg-4 col-sm-4">
+              <label for="jobTitle">Preferred Location:</label>
+            </div>
+            <div formArrayName="preferredLocation">
+              <div class="col-md-8 col-lg-8 col-sm-8" *ngFor="let loc of jobPostForm.get('preferredLocation')['controls'];let i = index">
+                <input type="text" class="form-control" placeholder="Your preferred location" [formControlName]="i">
+              </div>
+              <button class="btn btn-primary" type="button" (click)="onAddLocation()">Add more</button>
+            </div>
+          </div>
+
+          <div class="row field-sec" style="text-align: center; width: fit-content;margin: 0 auto;">
+            <button type="submit" class="btn btn-primary" style="margin-right: 5px">Post</button>
+            <button type="button" class="btn btn-info" style="margin-right: 5px">Cancel</button>
+            <button type="button" class="btn btn-danger" style="margin-right: 5px">Clear</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "container" *ngIf="!isPostSubmitted">
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="line-scale-pulse-out"></ngx-spinner>
+</div>
